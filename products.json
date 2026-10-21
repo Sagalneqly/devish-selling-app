@@ -1,12 +1,12 @@
 {
   "shop": {
-    "name": "FF Game",
-    "tagline": "Booyah! Instant top-ups and pro gear",
+    "name": "D3X WAY",
+    "tagline": "BEST ALL IN ONE ",
     "notice": "Orders are delivered after payment is confirmed.",
     "footer": "Need help? Message us on WhatsApp.",
-    "booyah": "BOOYAH!",
-    "whatsapp": "9779800000000",
-    "activeUsers": "1500+",
+    "booyah": "GHOP GHOP",
+    "whatsapp": "+977 9823564913",
+    "activeUsers": "1501",
     "dbUrl": ""
   },
   "theme": {
@@ -15,9 +15,7 @@
     "bg": "#07080d"
   },
   "chips": [
-    "Diamond top-up",
-    "Mod skins",
-    "Pro sensi"
+    "PANEL | FF ID | TOPUP | SENSI | MODS"
   ],
   "payments": [
     {
