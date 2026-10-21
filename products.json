@@ -77,6 +77,18 @@
   ],
   "products": [
     {
+      "id": "p1792587318930",
+      "cat": "PANEL",
+      "title": "BR MOD /PC/ANDROID ",
+      "price": "START FROM 1 DAY",
+      "old": "",
+      "badge": "",
+      "desc": "1DAY -NPR 200\n10 DAY-NPR 600\n30 DAY-NPR 999",
+      "img": "",
+      "stock": true,
+      "free": false
+    },
+    {
       "id": "p1792585930871",
       "cat": "ROOT SERVICESS",
       "title": "ROOT ANY PHONE",
