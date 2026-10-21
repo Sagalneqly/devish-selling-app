@@ -63,17 +63,6 @@
   ],
   "products": [
     {
-      "id": "p1792582189391",
-      "cat": "FF ID",
-      "title": "New product",
-      "price": "",
-      "old": "",
-      "badge": "",
-      "desc": "",
-      "img": "",
-      "stock": true
-    },
-    {
       "id": "p2",
       "cat": "PANEL",
       "title": "P20",
@@ -81,6 +70,17 @@
       "old": "200",
       "badge": "SALE",
       "desc": "BEST PANEL FOR AIMKILL",
+      "img": "images/1792582369335.jpg",
+      "stock": true
+    },
+    {
+      "id": "p1792582189391",
+      "cat": "FF ID",
+      "title": "New product",
+      "price": "",
+      "old": "",
+      "badge": "",
+      "desc": "",
       "img": "",
       "stock": true
     }
