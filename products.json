@@ -100,7 +100,10 @@
       "badge": "SALE",
       "desc": "BEST PANEL FOR AIMKILL",
       "img": "images/1792582510261.jpg",
-      "stock": true
+      "stock": true,
+      "free": true,
+      "dl": "https://www.facebook.com/profile.php?id=61575526575443",
+      "freeNote": "Here ugo"
     }
   ]
 }
