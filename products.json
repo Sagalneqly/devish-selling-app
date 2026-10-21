@@ -31,7 +31,7 @@
   ],
   "categories": [
     {
-      "name": "FF ID",
+      "name": "FF ID SOON!",
       "color": "#2ee6ff"
     },
     {
@@ -52,12 +52,12 @@
       "id": 1792100000000,
       "title": "Welcome to the shop",
       "body": "Turn on alerts to get new offers.",
-      "popup": false
+      "popup": true
     },
     {
       "id": 1792200000000,
-      "title": "Diamond sale today",
-      "body": "Get extra diamonds on every top-up. Order now.",
+      "title": "1ST 🇳🇵 ",
+      "body": "Best And Trusted ",
       "popup": true
     }
   ],
@@ -70,18 +70,7 @@
       "old": "200",
       "badge": "SALE",
       "desc": "BEST PANEL FOR AIMKILL",
-      "img": "images/1792582369335.jpg",
-      "stock": true
-    },
-    {
-      "id": "p1792582189391",
-      "cat": "FF ID",
-      "title": "New product",
-      "price": "",
-      "old": "",
-      "badge": "",
-      "desc": "",
-      "img": "",
+      "img": "images/1792582510261.jpg",
       "stock": true
     }
   ]
