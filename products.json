@@ -4,7 +4,7 @@
     "tagline": "BEST ALL IN ONE ",
     "notice": "Orders are delivered after payment is confirmed.",
     "footer": "Need help? Message us on WhatsApp.",
-    "booyah": "GHOP GHOP",
+    "booyah": "ORDER PENDING WHATAPP",
     "whatsapp": "+977 9823564913",
     "activeUsers": "1501",
     "dbUrl": ""
@@ -21,7 +21,7 @@
     {
       "name": "eSewa",
       "details": "ID: 98XXXXXXXX (Your Name)",
-      "qr": ""
+      "qr": "images/1792581892053.jpg"
     },
     {
       "name": "Khalti",
@@ -35,15 +35,11 @@
       "color": "#2ee6ff"
     },
     {
-      "name": "FF Mod Skin",
-      "color": "#ff3df0"
-    },
-    {
-      "name": "FF Top-up",
+      "name": "FF Top-up SOON!",
       "color": "#ff7a1a"
     },
     {
-      "name": "FF Sensi",
+      "name": "FF Sensi SOON!",
       "color": "#7dff5a"
     }
   ],
@@ -64,7 +60,7 @@
   "products": [
     {
       "id": "p1",
-      "cat": "FF Top-up",
+      "cat": "FF Top-up SOON!",
       "title": "100 Diamonds",
       "price": "Rs 120",
       "old": "Rs 150",
@@ -75,7 +71,7 @@
     },
     {
       "id": "p2",
-      "cat": "FF Sensi",
+      "cat": "FF Sensi SOON!",
       "title": "Pro Sensi Pack",
       "price": "Rs 200",
       "old": "",
