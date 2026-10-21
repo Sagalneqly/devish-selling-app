@@ -63,70 +63,26 @@
   ],
   "products": [
     {
-      "id": "p1792581926152",
+      "id": "p1792582189391",
       "cat": "FF ID",
       "title": "New product",
       "price": "",
       "old": "",
       "badge": "",
       "desc": "",
-      "img": "",
-      "stock": true
-    },
-    {
-      "id": "p1792581922468",
-      "cat": "FF ID",
-      "title": "New product",
-      "price": "",
-      "old": "",
-      "badge": "",
-      "desc": "",
-      "img": "",
-      "stock": true
-    },
-    {
-      "id": "p1",
-      "cat": "FF Top-up SOON!",
-      "title": "100 Diamonds",
-      "price": "Rs 120",
-      "old": "Rs 150",
-      "badge": "HOT",
-      "desc": "Direct top-up using your UID.",
       "img": "",
       "stock": true
     },
     {
       "id": "p2",
-      "cat": "FF Sensi SOON!",
-      "title": "Pro Sensi Pack",
-      "price": "Rs 200",
-      "old": "",
-      "badge": "",
-      "desc": "Best sensitivity settings for your phone.",
+      "cat": "PANEL",
+      "title": "P20",
+      "price": "Rs 150",
+      "old": "200",
+      "badge": "SALE",
+      "desc": "BEST PANEL FOR AIMKILL",
       "img": "",
       "stock": true
-    },
-    {
-      "id": "p3",
-      "cat": "FF Mod Skin",
-      "title": "Gold Skin Mod",
-      "price": "Rs 350",
-      "old": "",
-      "badge": "NEW",
-      "desc": "Custom gold weapon skin pack.",
-      "img": "",
-      "stock": true
-    },
-    {
-      "id": "p4",
-      "cat": "FF ID",
-      "title": "Level 60 ID",
-      "price": "Rs 2500",
-      "old": "",
-      "badge": "",
-      "desc": "Ready account with rare items.",
-      "img": "",
-      "stock": false
     }
   ]
 }
