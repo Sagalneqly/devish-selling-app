@@ -38,10 +38,6 @@
   ],
   "categories": [
     {
-      "name": "FF ID SOON!",
-      "color": "#2ee6ff"
-    },
-    {
       "name": "FF Top-up SOON!",
       "color": "#ff7a1a"
     },
@@ -86,6 +82,18 @@
   ],
   "products": [
     {
+      "id": "p1792585930871",
+      "cat": "ROOT SERVICES",
+      "title": "ROOT ANY PHONE",
+      "price": "2000",
+      "old": "3000",
+      "badge": "HOT",
+      "desc": "ALL DEVICES ROOT TEMPORARILY | PERMANENTLY | SAMSUNG-POCO-REDMI- AND MORE",
+      "img": "",
+      "stock": true,
+      "free": false
+    },
+    {
       "id": "p1792585253624",
       "cat": "PANEL",
       "title": "DRIP CLINT ",
@@ -93,18 +101,6 @@
       "old": "200",
       "badge": "NEW",
       "desc": "*DRIP WIRE — ANDROID  🔥\n\n🟩 *Aimbot*\n🟩 *Freeze*\n🟩 *ESP Moco*\n🟩 *ESP Line/Box/Distance* - \n🟩 *Crash corrigido!*",
-      "img": "",
-      "stock": true,
-      "free": false
-    },
-    {
-      "id": "p1792585152861",
-      "cat": "ROOT SERVICES",
-      "title": "ROOT SERVICES",
-      "price": " 2000",
-      "old": "3000",
-      "badge": "NEW",
-      "desc": "ALL DEVICES ROOT TEMPORARILY/ PERMANENTLY-SAMSUNG-REDMI POCO-OPPO-VIVO-ONE PLUS AND MORE",
       "img": "",
       "stock": true,
       "free": false
