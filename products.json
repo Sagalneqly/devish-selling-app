@@ -1,0 +1,112 @@
+{
+  "shop": {
+    "name": "FF Game Store",
+    "tagline": "Booyah! Instant top-ups and pro gear",
+    "notice": "Orders are delivered after payment is confirmed.",
+    "footer": "Need help? Message us on WhatsApp.",
+    "booyah": "BOOYAH!",
+    "whatsapp": "9779800000000",
+    "activeUsers": "1500+",
+    "dbUrl": ""
+  },
+  "theme": {
+    "a1": "#ff6a1a",
+    "a2": "#ffb12e",
+    "bg": "#07080d"
+  },
+  "chips": [
+    "Diamond top-up",
+    "Mod skins",
+    "Pro sensi"
+  ],
+  "payments": [
+    {
+      "name": "eSewa",
+      "details": "ID: 98XXXXXXXX (Your Name)",
+      "qr": ""
+    },
+    {
+      "name": "Khalti",
+      "details": "ID: 98XXXXXXXX (Your Name)",
+      "qr": ""
+    }
+  ],
+  "categories": [
+    {
+      "name": "FF ID",
+      "color": "#2ee6ff"
+    },
+    {
+      "name": "FF Mod Skin",
+      "color": "#ff3df0"
+    },
+    {
+      "name": "FF Top-up",
+      "color": "#ff7a1a"
+    },
+    {
+      "name": "FF Sensi",
+      "color": "#7dff5a"
+    }
+  ],
+  "notices": [
+    {
+      "id": 1792100000000,
+      "title": "Welcome to the shop",
+      "body": "Turn on alerts to get new offers.",
+      "popup": false
+    },
+    {
+      "id": 1792200000000,
+      "title": "Diamond sale today",
+      "body": "Get extra diamonds on every top-up. Order now.",
+      "popup": true
+    }
+  ],
+  "products": [
+    {
+      "id": "p1",
+      "cat": "FF Top-up",
+      "title": "100 Diamonds",
+      "price": "Rs 120",
+      "old": "Rs 150",
+      "badge": "HOT",
+      "desc": "Direct top-up using your UID.",
+      "img": "",
+      "stock": true
+    },
+    {
+      "id": "p2",
+      "cat": "FF Sensi",
+      "title": "Pro Sensi Pack",
+      "price": "Rs 200",
+      "old": "",
+      "badge": "",
+      "desc": "Best sensitivity settings for your phone.",
+      "img": "",
+      "stock": true
+    },
+    {
+      "id": "p3",
+      "cat": "FF Mod Skin",
+      "title": "Gold Skin Mod",
+      "price": "Rs 350",
+      "old": "",
+      "badge": "NEW",
+      "desc": "Custom gold weapon skin pack.",
+      "img": "",
+      "stock": true
+    },
+    {
+      "id": "p4",
+      "cat": "FF ID",
+      "title": "Level 60 ID",
+      "price": "Rs 2500",
+      "old": "",
+      "badge": "",
+      "desc": "Ready account with rare items.",
+      "img": "",
+      "stock": false
+    }
+  ]
+}
