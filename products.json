@@ -7,7 +7,14 @@
     "booyah": "ORDER PENDING WHATAPP",
     "whatsapp": "+977 9823564913",
     "activeUsers": "1501",
-    "dbUrl": ""
+    "dbUrl": "",
+    "fbPage": "",
+    "support": [
+      {
+        "label": "FACEBOOK PAGE",
+        "url": "https://www.facebook.com/profile.php?id=61575526575443"
+      }
+    ]
   },
   "theme": {
     "a1": "#ff6a1a",
