@@ -46,11 +46,6 @@
       "color": "#7dff5a"
     },
     {
-      "name": "ROOT SERVICES ",
-      "color": "#ffb12e",
-      "whatsapp": "9823564913"
-    },
-    {
       "name": "PANEL",
       "color": "#ffb12e",
       "whatsapp": "9707775599"
@@ -83,7 +78,7 @@
   "products": [
     {
       "id": "p1792585930871",
-      "cat": "ROOT SERVICES",
+      "cat": "PANEL",
       "title": "ROOT ANY PHONE",
       "price": "2000",
       "old": "3000",
