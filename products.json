@@ -1,29 +1,35 @@
 {
   "shop": {
-    "name": "FF Game Store",
-    "tagline": "Booyah! Instant top-ups and pro gear",
+    "name": "D3X WAY",
+    "tagline": "BEST ALL IN ONE ",
     "notice": "Orders are delivered after payment is confirmed.",
     "footer": "Need help? Message us on WhatsApp.",
-    "booyah": "BOOYAH!",
-    "whatsapp": "9779800000000",
-    "activeUsers": "1500+",
-    "dbUrl": ""
+    "booyah": "ORDER PENDING WHATAPP",
+    "whatsapp": "+977 9823564913",
+    "activeUsers": "1501",
+    "dbUrl": "",
+    "fbPage": "",
+    "admobBanner": "ca-app-pub-3940256099942544/6300978111",
+    "support": [
+      {
+        "label": "FACEBOOK PAGE",
+        "url": "https://www.facebook.com/profile.php?id=61575526575443"
+      }
+    ]
   },
   "theme": {
-    "a1": "#ff6a1a",
-    "a2": "#ffb12e",
+    "a1": "#00ffff",
+    "a2": "#00ff00",
     "bg": "#07080d"
   },
   "chips": [
-    "Diamond top-up",
-    "Mod skins",
-    "Pro sensi"
+    "PANEL | FF ID | TOPUP | SENSI | MODS"
   ],
   "payments": [
     {
       "name": "eSewa",
       "details": "ID: 98XXXXXXXX (Your Name)",
-      "qr": ""
+      "qr": "images/1792581892053.jpg"
     },
     {
       "name": "Khalti",
@@ -33,20 +39,29 @@
   ],
   "categories": [
     {
-      "name": "FF ID",
-      "color": "#2ee6ff"
+      "name": "FF Top-up SOON!",
+      "color": "#ff7a1a",
+      "whatsapp": "9823564913"
     },
     {
-      "name": "FF Mod Skin",
-      "color": "#ff3df0"
+      "name": "FF Sensi SOON!",
+      "color": "#7dff5a",
+      "whatsapp": "9823564913"
     },
     {
-      "name": "FF Top-up",
-      "color": "#ff7a1a"
+      "name": "PANEL",
+      "color": "#ffb12e",
+      "whatsapp": "9823565913"
     },
     {
-      "name": "FF Sensi",
-      "color": "#7dff5a"
+      "name": "ROOT PANEL",
+      "color": "#4da9ff",
+      "whatsapp": "9823564913"
+    },
+    {
+      "name": "ROOT SERVICESS",
+      "color": "#57ffcf",
+      "whatsapp": "9823564913"
     }
   ],
   "notices": [
@@ -54,59 +69,65 @@
       "id": 1792100000000,
       "title": "Welcome to the shop",
       "body": "Turn on alerts to get new offers.",
-      "popup": false
+      "popup": true
     },
     {
       "id": 1792200000000,
-      "title": "Diamond sale today",
-      "body": "Get extra diamonds on every top-up. Order now.",
+      "title": "1ST 🇳🇵 ",
+      "body": "Best And Trusted ",
       "popup": true
     }
   ],
   "products": [
     {
-      "id": "p1",
-      "cat": "FF Top-up",
-      "title": "100 Diamonds",
-      "price": "Rs 120",
-      "old": "Rs 150",
+      "id": "p1792587318930",
+      "cat": "PANEL",
+      "title": "BR MOD /PC/ANDROID ",
+      "price": "START FROM 1 DAY",
+      "old": "",
+      "badge": "",
+      "desc": "1DAY -NPR 200\n10 DAY-NPR 600\n30 DAY-NPR 999",
+      "img": "images/1792587974039.jpg",
+      "stock": true,
+      "free": false
+    },
+    {
+      "id": "p1792585930871",
+      "cat": "ROOT SERVICESS",
+      "title": "ROOT ANY PHONE",
+      "price": "2000",
+      "old": "3000",
       "badge": "HOT",
-      "desc": "Direct top-up using your UID.",
+      "desc": "ALL DEVICES ROOT TEMPORARILY | PERMANENTLY | SAMSUNG-POCO-REDMI- AND MORE",
       "img": "",
-      "stock": true
+      "stock": true,
+      "free": false
+    },
+    {
+      "id": "p1792585253624",
+      "cat": "PANEL",
+      "title": "DRIP CLINT ",
+      "price": " start from 100",
+      "old": "200",
+      "badge": "NEW",
+      "desc": "*DRIP WIRE — ANDROID  🔥\n\n🟩 *Aimbot*\n🟩 *Freeze*\n🟩 *ESP Moco*\n🟩 *ESP Line/Box/Distance* - \n🟩 *Crash corrigido!*",
+      "img": "images/1792586746159.jpg",
+      "stock": true,
+      "free": false
     },
     {
       "id": "p2",
-      "cat": "FF Sensi",
-      "title": "Pro Sensi Pack",
-      "price": "Rs 200",
-      "old": "",
-      "badge": "",
-      "desc": "Best sensitivity settings for your phone.",
-      "img": "",
-      "stock": true
-    },
-    {
-      "id": "p3",
-      "cat": "FF Mod Skin",
-      "title": "Gold Skin Mod",
-      "price": "Rs 350",
-      "old": "",
-      "badge": "NEW",
-      "desc": "Custom gold weapon skin pack.",
-      "img": "",
-      "stock": true
-    },
-    {
-      "id": "p4",
-      "cat": "FF ID",
-      "title": "Level 60 ID",
-      "price": "Rs 2500",
-      "old": "",
-      "badge": "",
-      "desc": "Ready account with rare items.",
-      "img": "",
-      "stock": false
+      "cat": "ROOT PANEL",
+      "title": "P20",
+      "price": "Rs 150",
+      "old": "200",
+      "badge": "SALE",
+      "desc": "BEST PANEL FOR AIMKILL",
+      "img": "images/1792582510261.jpg",
+      "stock": true,
+      "free": false,
+      "dl": "https://www.facebook.com/profile.php?id=61575526575443",
+      "freeNote": "Here ugo"
     }
   ]
 }
