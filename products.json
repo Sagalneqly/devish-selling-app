@@ -10,6 +10,11 @@
     "dbUrl": "",
     "fbPage": "",
     "admobBanner": "ca-app-pub-3940256099942544/1033173712",
+    "admobInter": "",
+    "promoTitle": "Promotions",
+    "promoCta": "",
+    "aboutTitle": "About us",
+    "aboutText": "100% Trusted/Safe\nAny Problems Dm us ",
     "support": [
       {
         "label": "FACEBOOK PAGE",
@@ -46,22 +51,26 @@
     {
       "name": "FF Sensi SOON!",
       "color": "#7dff5a",
-      "whatsapp": "9823564913"
+      "whatsapp": "9823564913",
+      "icon": "💀"
     },
     {
       "name": "PANEL",
       "color": "#ffb12e",
-      "whatsapp": "9823565913"
+      "whatsapp": "9823565913",
+      "icon": "🚫"
     },
     {
       "name": "ROOT PANEL",
       "color": "#4da9ff",
-      "whatsapp": "9823564913"
+      "whatsapp": "9823564913",
+      "icon": "🔞"
     },
     {
       "name": "ROOT SERVICESS",
       "color": "#57ffcf",
-      "whatsapp": "9823564913"
+      "whatsapp": "9823564913",
+      "icon": "✅️"
     }
   ],
   "notices": [
@@ -129,5 +138,6 @@
       "dl": "https://www.facebook.com/profile.php?id=61575526575443",
       "freeNote": "Here ugo"
     }
-  ]
+  ],
+  "promos": []
 }
