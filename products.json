@@ -90,6 +90,18 @@
   ],
   "products": [
     {
+      "id": "p1792745175750",
+      "cat": "PANEL",
+      "title": "XREG",
+      "price": "",
+      "old": "",
+      "badge": "Hot",
+      "desc": "👻 XREG HACK ANDROID IOS 📱\n✅ Android Non-Root Supported\n✅ iPhone & iOS Supported\n\n",
+      "img": "images/1792745205182.jpg",
+      "stock": true,
+      "free": false
+    },
+    {
       "id": "p1792729870065",
       "cat": "FF Top-up ",
       "title": "FF TOPUP ",
