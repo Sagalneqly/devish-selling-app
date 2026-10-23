@@ -154,7 +154,7 @@
   ],
   "promos": [],
   "maint": {
-    "on": false,
+    "on": true,
     "title": "Back soon",
     "message": "D3X WAY is under maintenance. Please check again in a little while.",
     "eta": ""
