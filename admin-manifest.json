@@ -1,6 +1,6 @@
 {
-  "name": "Shop Admin",
-  "short_name": "Shop Admin",
+  "name": "D3X Admin",
+  "short_name": "D3X Admin",
   "start_url": "admin.html",
   "display": "standalone",
   "background_color": "#07080d",
