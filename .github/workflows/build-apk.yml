@@ -3,6 +3,9 @@ on: workflow_dispatch
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # Test App ID from Google. Replace with YOUR AdMob App ID (ca-app-pub-xxxx~xxxx) when you have it.
+      ADMOB_APP_ID: ca-app-pub-3940256099942544~3347511713
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -16,12 +19,16 @@ jobs:
         run: |
           mkdir app && cd app
           npm init -y
-          npm i @capacitor/core@6 @capacitor/cli@6 @capacitor/android@6
+          npm i @capacitor/core@6 @capacitor/cli@6 @capacitor/android@6 @capacitor-community/admob@6
           mkdir www && cp ../index.html www/index.html
           cat > capacitor.config.json <<'EOF'
           {"appId":"com.ffstore.app","appName":"FF Game Store","webDir":"www","server":{"url":"https://sagalneqly.github.io/devish-selling-app/","androidScheme":"https"}}
           EOF
           npx cap add android
+      - name: Add AdMob App ID
+        run: |
+          sed -i "s#</application>#<meta-data android:name=\"com.google.android.gms.ads.APPLICATION_ID\" android:value=\"$ADMOB_APP_ID\"/></application>#" app/android/app/src/main/AndroidManifest.xml
+          grep -c APPLICATION_ID app/android/app/src/main/AndroidManifest.xml
       - name: Set app icon
         run: |
           for d in app/android/app/src/main/res/mipmap-*; do
