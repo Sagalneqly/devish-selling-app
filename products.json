@@ -44,9 +44,10 @@
   ],
   "categories": [
     {
-      "name": "FF Top-up SOON!",
+      "name": "FF Top-up ",
       "color": "#ff7a1a",
-      "whatsapp": "9823564913"
+      "whatsapp": "9823564913",
+      "icon": "💎 "
     },
     {
       "name": "FF Sensi SOON!",
@@ -90,7 +91,7 @@
   "products": [
     {
       "id": "p1792729870065",
-      "cat": "FF Top-up SOON!",
+      "cat": "FF Top-up ",
       "title": "FF TOPUP ",
       "price": "",
       "old": "",
