@@ -1,0 +1,242 @@
+name: Build D3X WAY APK
+
+# Run it from GitHub: Actions > Build D3X WAY APK > Run workflow.
+# Type the new version number (example 1.0.1). When it finishes, the download page and the
+# in-app "update available" message pick the new version up by themselves.
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "App version, three numbers (example 1.0.1)"
+        required: true
+        default: "1.0.0"
+      notes:
+        description: "What is new in this version (shown on the download page)"
+        required: false
+        default: ""
+      publish:
+        description: "Publish as the latest download"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: build-apk
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      APP_NAME: D3X WAY
+      APP_ID: com.ffstore.app
+      WEB_URL: https://sagalneqly.github.io/devish-selling-app/
+      # Test App ID from Google. Replace with YOUR AdMob App ID (ca-app-pub-xxxx~xxxx) when you have it.
+      ADMOB_APP_ID: ca-app-pub-3940256099942544~3347511713
+      VERSION: ${{ inputs.version }}
+      NOTES: ${{ inputs.notes }}
+      CODE: ${{ github.run_number }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: 1/8 Check inputs and project files
+        run: |
+          echo "::group::Inputs"
+          echo "App name : $APP_NAME"
+          echo "Version  : $VERSION"
+          echo "Build no.: $CODE"
+          echo "Web URL  : $WEB_URL"
+          echo "::endgroup::"
+          if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error title=Bad version number::Use three numbers like 1.0.1 (you typed: $VERSION)"; exit 1
+          fi
+          for f in index.html icon-192.png products.json; do
+            [ -f "$f" ] || { echo "::error title=Missing file::$f is not in the repository root"; exit 1; }
+          done
+          if [ "${{ inputs.publish }}" = "true" ] && gh release view "v$VERSION" >/dev/null 2>&1; then
+            echo "::error title=Version already published::v$VERSION already exists. Use a new version number."; exit 1
+          fi
+          echo "Everything needed is present."
+
+      - name: 2/8 Create Android project
+        run: |
+          mkdir app && cd app
+          npm init -y >/dev/null
+          npm i --no-audit --no-fund @capacitor/core@6 @capacitor/cli@6 @capacitor/android@6 @capacitor/app@6 @capacitor-community/admob@6
+          mkdir www && cp ../index.html www/index.html
+          # appendUserAgent lets the web app know which version it is running inside.
+          cat > capacitor.config.json <<EOF
+          {"appId":"$APP_ID","appName":"$APP_NAME","webDir":"www","appendUserAgent":"D3XWAY/$VERSION","server":{"url":"$WEB_URL","androidScheme":"https"}}
+          EOF
+          cat capacitor.config.json
+          npx cap add android
+
+      - name: 3/8 Set app name, version and AdMob ID
+        run: |
+          RES=app/android/app/src/main/res
+          MAN=app/android/app/src/main/AndroidManifest.xml
+          STR=$RES/values/strings.xml
+          GR=app/android/app/build.gradle
+
+          echo "::group::App name"
+          sed -i "s#<string name=\"app_name\">[^<]*</string>#<string name=\"app_name\">$APP_NAME</string>#; s#<string name=\"title_activity_main\">[^<]*</string>#<string name=\"title_activity_main\">$APP_NAME</string>#" "$STR"
+          cat "$STR"
+          grep -q "<string name=\"app_name\">$APP_NAME</string>" "$STR" || { echo "::error title=App name::Could not set the app name to $APP_NAME"; exit 1; }
+          echo "::endgroup::"
+
+          echo "::group::Version"
+          sed -i -E "s/versionCode [0-9]+/versionCode $CODE/; s/versionName \"[^\"]*\"/versionName \"$VERSION\"/" "$GR"
+          grep -E "versionCode|versionName" "$GR"
+          grep -q "versionName \"$VERSION\"" "$GR" || { echo "::error title=Version::Could not set versionName in build.gradle"; exit 1; }
+          echo "::endgroup::"
+
+          echo "::group::AdMob"
+          sed -i "s#</application>#<meta-data android:name=\"com.google.android.gms.ads.APPLICATION_ID\" android:value=\"$ADMOB_APP_ID\"/></application>#" "$MAN"
+          [ "$(grep -c 'com.google.android.gms.ads.APPLICATION_ID' "$MAN")" = "1" ] || { echo "::error title=AdMob::AdMob App ID was not added to AndroidManifest.xml"; exit 1; }
+          echo "AdMob App ID added."
+          echo "::endgroup::"
+
+      - name: 4/8 Set app icon and launch screen
+        continue-on-error: true
+        run: |
+          RES=app/android/app/src/main/res
+          SRC=icon-512.png; [ -f "$SRC" ] || SRC=icon-192.png
+          BG=$(node -e "try{const b=require('./products.json').theme.bg;console.log(/^#[0-9a-fA-F]{6}\$/.test(b)?b:'#07080d')}catch(e){console.log('#07080d')}")
+          echo "Icon source: $SRC   Background: $BG"
+          if ! command -v convert >/dev/null; then
+            echo "::warning title=Icon::ImageMagick not found, copying the plain icon instead"
+            for d in $RES/mipmap-*; do for n in ic_launcher ic_launcher_round ic_launcher_foreground; do [ -f "$d/$n.png" ] && cp icon-192.png "$d/$n.png" || true; done; done
+            exit 0
+          fi
+          make() { # density, launcher size, adaptive layer size
+            dir=$RES/mipmap-$1
+            [ -d "$dir" ] || return 0
+            inner=$(( $3 * 62 / 100 ))
+            convert "$SRC" -resize "$2x$2" "$dir/ic_launcher.png"
+            convert "$SRC" -resize "$2x$2" "$dir/ic_launcher_round.png"
+            convert -size "$3x$3" xc:none \( "$SRC" -resize "${inner}x${inner}" \) -gravity center -composite "$dir/ic_launcher_foreground.png"
+          }
+          make mdpi 48 108; make hdpi 72 162; make xhdpi 96 216; make xxhdpi 144 324; make xxxhdpi 192 432
+          [ -f "$RES/values/ic_launcher_background.xml" ] && sed -i -E "s/#[0-9A-Fa-f]{6}/$BG/" "$RES/values/ic_launcher_background.xml" || true
+          for f in $RES/drawable*/splash.png; do
+            [ -f "$f" ] || continue
+            sz=$(identify -format "%wx%h" "$f"); w=${sz%x*}; h=${sz#*x}
+            m=$(( (w<h ? w : h) * 30 / 100 ))
+            convert -size "$sz" "xc:$BG" \( "$SRC" -resize "${m}x${m}" \) -gravity center -composite "$f"
+          done
+          echo "Icons and launch screen updated."
+
+      - name: 5/8 Build APK
+        env:
+          KS_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          KS_PASS: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KS_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASS: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          mkdir -p dist
+          cd app/android
+          chmod +x gradlew
+          BT=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
+          echo "Build tools: $BT"
+          if [ -n "$KS_B64" ] && [ -n "$KS_PASS" ] && [ -n "$KS_ALIAS" ]; then
+            echo "SIGNED=true" >> "$GITHUB_ENV"
+            echo "Signing key found: building a signed RELEASE apk."
+            echo "$KS_B64" | base64 -d > "$RUNNER_TEMP/release.jks"
+            ./gradlew assembleRelease
+            UNSIGNED=$(ls app/build/outputs/apk/release/*.apk | head -1)
+            "$BT/zipalign" -p -f 4 "$UNSIGNED" "$RUNNER_TEMP/aligned.apk"
+            KP="${KEY_PASS:-$KS_PASS}"
+            KS_PASS="$KS_PASS" KP="$KP" "$BT/apksigner" sign --ks "$RUNNER_TEMP/release.jks" --ks-key-alias "$KS_ALIAS" --ks-pass env:KS_PASS --key-pass env:KP --out ../../dist/D3X-WAY.apk "$RUNNER_TEMP/aligned.apk"
+            rm -f "$RUNNER_TEMP/release.jks"
+          else
+            echo "SIGNED=false" >> "$GITHUB_ENV"
+            echo "::warning title=No signing key::Building a DEBUG apk. Debug builds get a new signature every time, so phones can NOT update over an older install (they must uninstall first). See SETUP.md to add a permanent signing key."
+            ./gradlew assembleDebug
+            cp app/build/outputs/apk/debug/app-debug.apk ../../dist/D3X-WAY.apk
+          fi
+          echo "::group::Signature"
+          "$BT/apksigner" verify --print-certs ../../dist/D3X-WAY.apk | grep -E "Signer #1 certificate (DN|SHA-256)" || true
+          echo "::endgroup::"
+          ls -l ../../dist
+
+      - name: 6/8 Check the finished APK
+        run: |
+          BT=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
+          OUT=$("$BT/aapt2" dump badging dist/D3X-WAY.apk 2>&1 || true)
+          echo "$OUT" | grep -E "^package:|application-label:|launchable-activity" || true
+          if echo "$OUT" | grep -q "application-label:"; then
+            echo "$OUT" | grep -q "application-label:'$APP_NAME'" || { echo "::error title=Wrong app name::The APK is not named $APP_NAME"; exit 1; }
+            echo "$OUT" | grep -q "versionName='$VERSION'" || { echo "::error title=Wrong version::The APK is not version $VERSION"; exit 1; }
+            echo "App name and version are correct."
+          else
+            echo "::warning title=Check skipped::aapt2 could not read the APK"
+          fi
+          SIZE=$(stat -c%s dist/D3X-WAY.apk)
+          [ "$SIZE" -gt 1000000 ] || { echo "::error title=APK too small::Only $SIZE bytes, the build looks broken"; exit 1; }
+          {
+            echo "## D3X WAY v$VERSION built"
+            echo ""
+            echo "| | |"
+            echo "|---|---|"
+            echo "| Version | $VERSION (build $CODE) |"
+            echo "| Signed with permanent key | $SIGNED |"
+            echo "| Size | $((SIZE/1024/1024)) MB |"
+            echo "| SHA-256 | \`$(sha256sum dist/D3X-WAY.apk | cut -d' ' -f1)\` |"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: 7/8 Save APK as workflow file
+        uses: actions/upload-artifact@v4
+        with:
+          name: D3X-WAY-v${{ inputs.version }}
+          path: dist/D3X-WAY.apk
+          retention-days: 30
+
+      - name: 8/8 Publish release and update download page
+        if: ${{ inputs.publish }}
+        run: |
+          URL="https://github.com/$GITHUB_REPOSITORY/releases/download/v$VERSION/D3X-WAY.apk"
+          export URL SIZE=$(stat -c%s dist/D3X-WAY.apk) SHA=$(sha256sum dist/D3X-WAY.apk | cut -d' ' -f1) DATE=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+
+          echo "::group::GitHub release"
+          gh release create "v$VERSION" dist/D3X-WAY.apk --title "D3X WAY v$VERSION" --notes "${NOTES:-D3X WAY v$VERSION}" --target "$GITHUB_SHA" --latest
+          echo "::endgroup::"
+
+          echo "::group::version.json"
+          node - <<'JS'
+          const fs=require('fs'),e=process.env;
+          let prev={};try{prev=JSON.parse(fs.readFileSync('version.json','utf8'))}catch(x){}
+          const entry={version:e.VERSION,date:e.DATE,apk:e.URL,notes:e.NOTES,size:+e.SIZE};
+          const history=[entry,...(prev.history||[]).filter(h=>h.version!==e.VERSION)].slice(0,15);
+          const out={version:e.VERSION,build:+e.CODE,date:e.DATE,apk:e.URL,size:+e.SIZE,sha256:e.SHA,signed:e.SIGNED==='true',notes:e.NOTES,history};
+          fs.writeFileSync('version.json',JSON.stringify(out,null,2)+'\n');
+          JS
+          cat version.json
+          echo "::endgroup::"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add version.json
+          git commit -m "Release v$VERSION"
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"
+          gh api -X POST "repos/$GITHUB_REPOSITORY/pages/builds" >/dev/null 2>&1 || echo "Pages rebuild request skipped (it will rebuild by itself)."
+          {
+            echo ""
+            echo "Download page: https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/download.html"
+            echo ""
+            echo "Direct link: $URL"
+          } >> "$GITHUB_STEP_SUMMARY"
