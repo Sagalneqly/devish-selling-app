@@ -90,10 +90,22 @@
   ],
   "products": [
     {
+      "id": "p1792745693055",
+      "cat": "PANEL",
+      "title": "Velora External iOS",
+      "price": "100",
+      "old": "",
+      "badge": "NEW",
+      "desc": "1 DAY  100RS\n3 DAY  300RS\n7 DAY  550RS\n15 DAY  650RS\n30 DAY 1500RS",
+      "img": "",
+      "stock": true,
+      "free": false
+    },
+    {
       "id": "p1792745175750",
       "cat": "PANEL",
       "title": "XREG",
-      "price": "",
+      "price": "100",
       "old": "",
       "badge": "Hot",
       "desc": "👻 XREG HACK ANDROID IOS 📱\n✅ Android Non-Root Supported\n✅ iPhone & iOS Supported\n\n\n1 Day  100RS✅ \n3 Day  300RS✅ \n7 Day  450✅ \n20    Day✅ ",
