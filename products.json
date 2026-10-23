@@ -160,7 +160,7 @@
     "eta": ""
   },
   "app": {
-    "minVersion": "",
-    "updateMsg": ""
+    "minVersion": "1.0.1",
+    "updateMsg": "Update it"
   }
 }
