@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07080d">
+<meta name="description" content="Download the latest D3X WAY app for Android.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<title>Download D3X WAY</title>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,700;1,700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#07080d;--card:#10121a;--line:#232838;--text:#eef1ff;--muted:#8b93b0;--hot:#ff6a1a;--hot2:#ffb12e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100vh;color:var(--text);font:500 16px/1.5 "Chakra Petch",system-ui,sans-serif;background:radial-gradient(ellipse 70% 40% at 50% -5%,color-mix(in srgb,var(--hot) 28%,transparent),transparent 70%),repeating-linear-gradient(135deg,#ffffff06 0 1px,transparent 1px 14px),var(--bg) fixed}
+main{max-width:640px;margin:auto;padding:28px 18px 56px}
+.brand{display:flex;align-items:center;gap:12px;font:italic 700 20px "Chakra Petch",sans-serif;color:var(--hot2)}
+.brand img{width:44px;height:44px;border-radius:10px;border:1px solid var(--line)}
+.hero{margin:34px 0 8px}
+.hero small{display:block;color:var(--muted);font-size:14px}
+.ver{margin:0;font:italic 700 clamp(64px,22vw,128px)/.95 "Chakra Petch",sans-serif;background:linear-gradient(90deg,var(--hot2),var(--hot) 55%,#ff3d5a);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 22px color-mix(in srgb,var(--hot) 40%,transparent));overflow-wrap:anywhere}
+.meta{color:var(--muted);font-size:14px;margin:10px 0 0}
+.go{display:block;width:100%;margin:22px 0 8px;padding:16px;text-align:center;text-decoration:none;font:700 19px "Chakra Petch",sans-serif;background:var(--hot);color:#160800;border:0;cursor:pointer;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px))}
+.go:hover{filter:brightness(1.1)}
+.go[aria-disabled=true]{opacity:.4;pointer-events:none}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--hot2);outline-offset:3px}
+.sub{color:var(--muted);font-size:13px;margin:0}
+.banner{margin:20px 0 0;border-left:4px solid var(--hot);background:color-mix(in srgb,var(--hot) 10%,transparent);padding:10px 14px;color:#ffd9bd;font-size:14px}
+.banner[hidden]{display:none}
+h2{margin:36px 0 10px;font:italic 700 22px "Chakra Petch",sans-serif;color:var(--hot2)}
+.notes{margin:0;white-space:pre-wrap;color:#cfd6f3;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--hot);padding:12px 14px}
+ol.steps{margin:0;padding:0;list-style:none;display:grid;gap:10px;counter-reset:s}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;color:#cfd6f3}
+ol.steps li::before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;background:var(--card);border:1px solid var(--hot);color:var(--hot2);font-weight:700;transform:skewX(-10deg)}
+ol.steps b{color:var(--text)}
+.old{display:grid;gap:8px}
+.old a{display:flex;justify-content:space-between;gap:12px;padding:10px 14px;background:var(--card);border:1px solid var(--line);color:var(--text);text-decoration:none}
+.old a:hover{border-color:var(--hot)}
+.old span{color:var(--muted);font-size:13px}
+details{margin-top:14px;color:var(--muted);font-size:13px}
+summary{cursor:pointer}
+code{display:block;margin-top:6px;overflow-wrap:anywhere;color:#cfd6f3;font-size:12px}
+.help{display:flex;gap:10px;flex-wrap:wrap}
+.help a{padding:9px 16px;border:1px solid #2b3250;background:#0e1019;color:#cfd6f3;text-decoration:none}
+.help a:hover{border-color:var(--hot)}
+footer{margin-top:44px;color:var(--muted);font-size:13px}
+.err{color:#ff9daf}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <div class="brand"><img src="icon-192.png" alt="" onerror="this.style.display='none'">D3X WAY</div>
+
+  <div class="banner" id="mt" hidden></div>
+
+  <section class="hero" aria-live="polite">
+    <small id="lbl">Checking the latest version...</small>
+    <p class="ver" id="ver">&nbsp;</p>
+    <p class="meta" id="meta"></p>
+  </section>
+
+  <a class="go" id="dl" href="#" aria-disabled="true">Download for Android</a>
+  <p class="sub" id="sub">Android phones only. The file is a .apk.</p>
+  <p class="sub err" id="err"></p>
+
+  <h2>What is new</h2>
+  <p class="notes" id="notes">Loading...</p>
+
+  <h2>How to install</h2>
+  <ol class="steps">
+    <li><span><b>Download the file.</b> Tap the orange button above. If your browser warns that the file can harm your device, choose Download anyway.</span></li>
+    <li><span><b>Open it.</b> Tap the finished download, or find D3X-WAY.apk in your Downloads folder.</span></li>
+    <li><span><b>Allow the install.</b> If Android asks, allow your browser to install apps from this source, then go back and tap Install.</span></li>
+    <li><span><b>Updating?</b> Install over the old app. Your data stays. If Android says the app was not installed, remove the old app first, then install again.</span></li>
+  </ol>
+
+  <h2 id="oh" hidden>Older versions</h2>
+  <div class="old" id="old"></div>
+
+  <details id="vd" hidden>
+    <summary>File check (advanced)</summary>
+    <code id="sha"></code>
+  </details>
+
+  <h2>Need help?</h2>
+  <div class="help" id="help"><span class="sub">Open the app and tap Support.</span></div>
+
+  <footer id="ft">D3X WAY</footer>
+</main>
+
+<script>
+const $=id=>document.getElementById(id),E=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const U=u=>/^https?:\/\//i.test(u)?u:'https://'+u;
+const size=b=>b>1048576?(b/1048576).toFixed(1)+' MB':b>1024?Math.round(b/1024)+' KB':'';
+const day=d=>{try{return new Date(d).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'})}catch(e){return ''}};
+// Where the GitHub releases live (works on username.github.io/repo)
+function relPage(){const m=location.hostname.match(/^(.+)\.github\.io$/),r=location.pathname.split('/')[1];return m&&r?'https://github.com/'+m[1]+'/'+r+'/releases/latest':''}
+
+async function theme(){
+  try{
+    const d=await (await fetch('products.json?t='+Date.now(),{cache:'no-store'})).json(),r=document.documentElement.style,t=d.theme||{};
+    if(t.a1)r.setProperty('--hot',t.a1); if(t.a2)r.setProperty('--hot2',t.a2); if(t.bg)r.setProperty('--bg',t.bg);
+    const s=d.shop||{},L=[],w=String(s.whatsapp||'').replace(/\D/g,'');
+    if(s.fbPage)L.push(['Facebook page',U(s.fbPage)]);
+    if(w)L.push(['WhatsApp','https://wa.me/'+w]);
+    (s.support||[]).forEach(x=>{if(x.label&&x.url)L.push([x.label,U(x.url)])});
+    if(L.length)$('help').innerHTML=L.map(x=>`<a href="${E(x[1])}" target="_blank" rel="noopener">${E(x[0])}</a>`).join('');
+    if(s.footer)$('ft').textContent=s.footer;
+    const m=d.maint||{};
+    if(m.on){$('mt').hidden=false;$('mt').textContent=(m.title?m.title+'. ':'')+(m.message||'The app is under maintenance.')+(m.eta?' '+m.eta:'')}
+  }catch(e){}
+}
+
+async function main(){
+  let v;
+  try{
+    const r=await fetch('version.json?t='+Date.now(),{cache:'no-store'});
+    if(!r.ok)throw new Error('version.json '+r.status);
+    v=await r.json();
+  }catch(e){
+    $('lbl').textContent='Could not check the latest version';
+    $('ver').textContent='D3X WAY';
+    $('err').textContent='Check your internet connection and refresh this page.';
+    const g=relPage();
+    if(g){$('dl').href=g;$('dl').removeAttribute('aria-disabled');$('dl').textContent='Open downloads on GitHub'}
+    $('notes').textContent='Not available right now.';
+    return;
+  }
+  if(!v.apk){
+    $('lbl').textContent='No version published yet';
+    $('ver').textContent='Soon';
+    $('notes').textContent='The first version has not been published. Please check again later.';
+    return;
+  }
+  $('lbl').textContent='Latest version';
+  $('ver').textContent='v'+v.version;
+  document.title='Download D3X WAY v'+v.version;
+  $('meta').textContent=[day(v.date),size(v.size),v.signed?'Signed release':''].filter(Boolean).join('  |  ');
+  const dl=$('dl');dl.href=v.apk;dl.removeAttribute('aria-disabled');dl.setAttribute('download','D3X-WAY.apk');
+  dl.textContent='Download D3X WAY v'+v.version;
+  if(!/android/i.test(navigator.userAgent))$('sub').textContent='Open this page on your Android phone to install. The file is a .apk.';
+  $('notes').textContent=(v.notes||'').trim()||'Fixes and improvements.';
+  if(v.sha256){$('vd').hidden=false;$('sha').textContent='SHA-256: '+v.sha256}
+  const h=(v.history||[]).filter(x=>x.version!==v.version&&x.apk).slice(0,8);
+  if(h.length){$('oh').hidden=false;$('old').innerHTML=h.map(x=>`<a href="${E(x.apk)}"><b>v${E(x.version)}</b><span>${E(day(x.date))}</span></a>`).join('')}
+}
+theme();main();
+</script>
+<script>if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))</script>
+</body>
+</html>

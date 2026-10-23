@@ -1,41 +1,43 @@
-# FF Game Store - Setup (GitHub Pages)
+# D3X WAY - setup (one time)
 
-Files: index.html (customer app), admin.html (admin app), products.json (shop data),
-manifest.json, admin-manifest.json, icon-192.png, icon-512.png
+## 1. Upload
+Upload everything in this zip to your GitHub repo (same folder as your current index.html).
+Keep your own `products.json`, `icon-192.png`, `icon-512.png` and `images/` folder - they are not in this zip.
+The build file goes in `.github/workflows/build-apk.yml` (it replaces the old one).
 
-## 1. Put the files on GitHub
-1. Create a new GitHub repository (Public). Example name: ff-store
-2. Upload ALL files from this folder to the main branch (Add file > Upload files).
-3. Settings > Pages > Source: "Deploy from a branch" > Branch: main, folder: / (root) > Save.
-4. After about 1 minute your apps are live:
-   - Customer app: https://YOURNAME.github.io/ff-store/
-   - Admin app:    https://YOURNAME.github.io/ff-store/admin.html
+## 2. Shop name
+Open `admin.html`, set **Shop name** to `D3X WAY`, press **Save to shop**.
+(The name shown inside the app comes from your products.json, not from the APK.)
 
-## 2. Make the admin token
-1. GitHub > Settings > Developer settings > Personal access tokens > Fine-grained tokens > Generate new token.
-2. Repository access: only your ff-store repo.
-3. Permissions > Repository permissions > Contents: Read and write.
-4. Generate and copy the token.
+## 3. Permanent signing key (important, do once)
+Without it every build is signed differently and phones refuse to update over the old app.
+On a computer (Java installed) run:
 
-## 3. Connect the admin app
-1. Open admin.html on your phone or PC.
-2. Repository: YOURNAME/ff-store   Branch: main   Token: paste it. Press Connect.
-3. Edit products, payment methods (name, number, QR image), colors, texts, notifications, product images.
-4. Press "Save to shop". The customer app updates within about 1 minute.
-The token is saved only in your own browser. Never share it. Use "Disconnect" to remove it.
+    keytool -genkeypair -v -keystore d3x.jks -alias d3x -keyalg RSA -keysize 2048 -validity 10000
+    base64 -w0 d3x.jks
 
-## 4. Install as apps on the phone
-Open each link in Chrome > menu > Add to Home screen / Install app.
+In GitHub: Settings > Secrets and variables > Actions > New repository secret. Add:
+- `ANDROID_KEYSTORE_BASE64` = the long base64 text
+- `ANDROID_KEYSTORE_PASSWORD` = the keystore password
+- `ANDROID_KEY_ALIAS` = `d3x`
+- `ANDROID_KEY_PASSWORD` = the key password (same as above if you pressed Enter)
 
-## 5. Real user count in admin (optional)
-1. Go to firebase.google.com > create a project > Build > Realtime Database > Create (test mode).
-2. Rules tab, paste this and Publish:
-   {"rules":{"users":{".read":true,".write":true}}}
-3. Copy the database URL (https://xxxx-default-rtdb.firebaseio.com).
-4. In admin > Look and text > "Database link", paste it, Save to shop.
-5. Admin > App users shows Total users, Active today, Last 7 days.
-The "1500+" text at the top of the customer app is the "Active users text" field in admin.
+Keep d3x.jks safe. If you lose it you can never update installed apps again.
 
-## Notes
-- Notifications are in-app only (bell + popup), no phone push.
-- Orders open WhatsApp with the product, ID, name and payment method. Set your number in admin (digits only, with country code).
+## 4. Publish a version
+GitHub > Actions > **Build D3X WAY APK** > Run workflow > type the version (example 1.0.0) > Run.
+When it is green: the APK is in Releases, and `download.html` shows it.
+Download page: https://sagalneqly.github.io/devish-selling-app/download.html
+
+Also turn on: Settings > Actions > General > Workflow permissions > **Read and write**.
+
+## 5. App ON / OFF (maintenance)
+Admin > **App status** > Turn app OFF now. Customers see your message within about a minute. Turn it ON the same way.
+
+## 6. Logs
+Admin > bottom card **App logs**. Needs your Firebase database rules to allow `logs`:
+
+    { "rules": { "users": { ".read": true, ".write": true }, "logs": { ".read": true, ".write": true } } }
+
+## Forcing an update
+Admin > **App version** > Oldest version allowed (example 1.0.2). Older apps get an Update required screen.
