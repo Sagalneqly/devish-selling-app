@@ -1,0 +1,47 @@
+name: Build Customer APK
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      # Test App ID from Google. Replace with YOUR AdMob App ID (ca-app-pub-xxxx~xxxx) when you have it.
+      ADMOB_APP_ID: ca-app-pub-3940256099942544~3347511713
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - name: Create Android app
+        run: |
+          mkdir app && cd app
+          npm init -y
+          npm i @capacitor/core@6 @capacitor/cli@6 @capacitor/android@6 @capacitor-community/admob@6
+          mkdir www && cp ../index.html www/index.html
+          cat > capacitor.config.json <<'EOF'
+          {"appId":"com.ffstore.app","appName":"D3X WAY","webDir":"www","server":{"url":"https://sagalneqly.github.io/devish-selling-app/","androidScheme":"https"}}
+          EOF
+          npx cap add android
+      - name: Add AdMob App ID
+        run: |
+          sed -i "s#</application>#<meta-data android:name=\"com.google.android.gms.ads.APPLICATION_ID\" android:value=\"$ADMOB_APP_ID\"/></application>#" app/android/app/src/main/AndroidManifest.xml
+          grep -c APPLICATION_ID app/android/app/src/main/AndroidManifest.xml
+      - name: Set app icon
+        run: |
+          for d in app/android/app/src/main/res/mipmap-*; do
+            for n in ic_launcher ic_launcher_round ic_launcher_foreground; do
+              [ -f "$d/$n.png" ] && cp icon-192.png "$d/$n.png" || true
+            done
+          done
+      - name: Build APK
+        run: |
+          cd app/android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: customer-apk
+          path: app/android/app/build/outputs/apk/debug/app-debug.apk
