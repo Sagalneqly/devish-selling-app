@@ -72,6 +72,17 @@
       "color": "#57ffcf",
       "whatsapp": "9823564913",
       "icon": "✅️"
+    },
+    {
+      "name": "GIVEAWAY ",
+      "color": "#00ff44",
+      "icon": "🎁 ",
+      "whatsapp": "9823564913"
+    },
+    {
+      "name": "New category",
+      "color": "#ffb12e",
+      "icon": "🎮"
     }
   ],
   "notices": [
