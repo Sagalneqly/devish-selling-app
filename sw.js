@@ -2,7 +2,7 @@
 // Fixes vs old version: data files (products.json, version.json) are never piled up in the cache
 // (the old code stored a new copy every minute), only good responses are cached, and one missing
 // file no longer stops everything else from being cached.
-const C='d3xway-v5';
+const C='d3xway-v6';
 const PRE=['./','index.html','admin.html','download.html','manifest.json','admin-manifest.json','icon-192.png','icon-512.png'];
 self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(C).then(c=>Promise.allSettled(PRE.map(u=>c.add(u)))))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==C).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
