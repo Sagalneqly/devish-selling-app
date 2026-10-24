@@ -96,6 +96,20 @@
   ],
   "products": [
     {
+      "id": "p1792833911543",
+      "cat": "GIVEAWAY",
+      "title": "DRIP CLINT GIVEAWAY ",
+      "price": "",
+      "old": "",
+      "badge": "",
+      "desc": "",
+      "img": "",
+      "stock": true,
+      "free": true,
+      "dl": "https://chat.whatsapp.com/FMOui5Fnh3YESvPRx1BY0g?s=sh&p=a&mlu=4&ilr=4",
+      "freeNote": "FOR GIVEAWAY JOIN OUR WHATAPP CHENNEL"
+    },
+    {
       "id": "p1792745693055",
       "cat": "PANEL",
       "title": "Velora External iOS",
