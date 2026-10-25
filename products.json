@@ -102,6 +102,18 @@
   ],
   "products": [
     {
+      "id": "p1792902863432",
+      "cat": "ROOT PANEL",
+      "title": "Angry Mod",
+      "price": "",
+      "old": "",
+      "badge": "NEW",
+      "desc": "ROOT / KARNAL BASE\nAIMBOT\nAIMSCILENT\nESP\nAND MORE",
+      "img": "images/1792902871924.jpg",
+      "stock": true,
+      "free": false
+    },
+    {
       "id": "p1792833911543",
       "cat": "GIVEAWAY .",
       "title": "DRIP CLINT GIVEAWAY ",
